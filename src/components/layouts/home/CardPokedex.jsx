@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHeart } from '@fortawesome/free-solid-svg-icons';
 const PokedexCollections = props => {
   const data = props.data;
 
@@ -37,7 +38,13 @@ const PokedexCollections = props => {
               <div className="sc-product-item style-2">
                 <div className="product-img">
                   <img src={item.img} alt="Bidzen" />
-                  <Link to="/connect-wallet" className="sc-button style letter"><span>plus</span></Link>
+                  <Link to="#" className="sc-button style d-flex justify-content-center align-items-center">
+                  <span>Ajouter</span>
+  <span className="mr-2">
+    <FontAwesomeIcon icon={faHeart} className="heart-icon" />
+  </span>
+
+</Link>
                   <label>{item.pokemonTypes}</label>
                 </div>
                 <div className="product-content">
