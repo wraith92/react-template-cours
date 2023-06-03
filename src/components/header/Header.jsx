@@ -1,5 +1,4 @@
 import React , { useRef , useState , useEffect } from 'react';
-import TopBar from './TopBar';
 import { Link , useLocation } from 'react-router-dom'
 import logo from '../../assets/images/logo/logo_dark.png'
 import logo2x from '../../assets/images/logo/logo_dark@2x.png'
@@ -8,7 +7,7 @@ import logolight2x from '../../assets/images/logo/logo@2x.png'
 import menus from "../../pages/menu";
 import DarkMode from "./DarkMode"
 
-import icon from '../../assets/images/icon/connect-wallet.svg'
+import icon from '../../assets/images/icon/panier.png'
 
 const Header = () => {
     const { pathname } = useLocation();
@@ -42,7 +41,6 @@ const Header = () => {
     };
 
     return <div>
-      <TopBar />
       <header id="header_main" className="header_1 js-header" ref={headerRef}>
             <div className="container-fluid">
                 <div className="row">
@@ -82,9 +80,9 @@ const Header = () => {
                                 </ul>
                             </nav>
                             <div className="button-connect-wallet">
-                                <Link to="/connect-wallet" className="sc-button wallet  style-2">
+                                <Link to="/mon-pokedex" className="sc-button wallet  style-2">
                                     <img src={icon} alt="icon" />
-                                    <span>Connect Wallet</span>
+                                    <span>Mon Pokédex</span>
                                 </Link>
                             </div>
 

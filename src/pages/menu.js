@@ -12,64 +12,15 @@ const menus = [
     },
     {
         id: 2,
-        name: 'Todo',
+        name: 'Combat Pokémon',
         namesub: [
             {
                 id: 1,
-                sub: 'Todo-list',
-                links: '/todo-list'
+                sub: 'Combat Pokémon',
+                links: '/combat'
             }
-
         ],
-    },
-    {
-        id: 3,
-        name: 'Film',
-        namesub: [
-            {
-                id: 1,
-                sub: 'Film',
-                links: '/Film'
-            },
-            {
-                id: 2,
-                sub: 'Quiz',
-                links: '/Quiz-Film'
-            },
-        ],
-    },
-    {
-        id: 4,
-        name: 'API',
-        namesub: [
-            {
-                id: 1,
-                sub: 'Pockedex',
-                links: '/pockedex'
-            },
-            {
-                id: 2,
-                sub: 'Citation',
-                links: '/login'
-            },
-            {
-                id: 3,
-                sub: 'Register',
-                links: '/register'
-            },
-        ],
-    },
-    {
-        id: 4,
-        name: 'Localstorage',
-        namesub: [
-            {
-                id: 1,
-                sub: 'Localstorage',
-                links: '/localstorage'
-            },
-        ],
-    },
+    }
 
 ]
 

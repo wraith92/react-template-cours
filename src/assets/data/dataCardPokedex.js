@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFire, faWater, faLeaf, faBolt, faStar } from '@fortawesome/free-solid-svg-icons';
 const getPokemonData = async () => {
     try {
-      const response = await axios.get('https://pokeapi.co/api/v2/pokemon');
+      const response = await axios.get('https://pokeapi.co/api/v2/pokemon?limit=200');
       const results = response.data.results;
 
       const pokemonData = await Promise.all(
@@ -46,7 +46,7 @@ const getPokemonData = async () => {
           return {
             img,
             pokemonTypes,
-            title:name,
+            name,
             averageHeight,
             weight,
             height,

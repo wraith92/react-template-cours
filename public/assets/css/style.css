@@ -236,10 +236,39 @@ textarea {
 
 img {
     height                : auto;
-    max-width             : 100%;
+    max-width             : 70%;
     vertical-align        : middle;
     -ms-interpolation-mode: bicubic
 }
+
+.pagination {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .pagination-item {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    color: #e8e5e8;
+    background-color: #7d19e1;
+    border: 1px solid #7d19e1;
+    margin: 0 5px;
+    cursor: pointer;
+  }
+  
+  .pagination-item.active {
+    background-color: #e758e7;
+    color: #fff;
+    border-color: #e758e7;
+  }
 
 p {
     font-weight: 400;
@@ -597,7 +626,7 @@ input[type="url"],
 input[type="search"],
 input[type="tel"],
 input[type="color"] {
-    border: 1px solid rgba(99, 69, 237, 0.1);
+    border: 3px solid rgba(212, 69, 237, 0.27);
     outline           : 0;
     -webkit-box-shadow: none;
     -moz-box-shadow   : none;
@@ -627,7 +656,7 @@ input[type="url"]:focus,
 input[type="search"]:focus,
 input[type="tel"]:focus,
 input[type="color"]:focus {
-    border: 1px solid var(--primary-color5);
+    border: 4px solid var(--primary-color5);
     outline           : 0;
     -webkit-box-shadow: none;
     -moz-box-shadow   : none;
@@ -656,6 +685,7 @@ input[type="color"]::placeholder {
 }
 
 /* Button */
+
 button,
 input[type="button"],
 input[type="reset"],
@@ -810,6 +840,10 @@ h6 a {
 .tf-section {
     padding: 100px 0;
 }
+.btn-violet {
+    background-color: violet !important;
+    color: white !important;
+  }
 
 
 .tf-live-auctions.tf-section {
@@ -823,7 +857,7 @@ h6 a {
     padding: 103px 0 85px;
 }
 .tf-trendy-collections.tf-section {
-    padding: 100px 0 71px;
+    padding: 44px 0 71px;
 }
 
 .tf-best-seller {
