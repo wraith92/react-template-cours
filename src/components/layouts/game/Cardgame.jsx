@@ -1,10 +1,8 @@
 import React from 'react';
-import { Link } from 'react-router-dom'
 import { Navigation, Scrollbar, A11y   } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-const Slider01 = props => {
-    const data = props.data
+const Cardgame = props => {
     const selectedPokemon=props.selectedPokemon
         return  (
         <section className="tf-slider slider">
@@ -52,4 +50,4 @@ const SliderItem = props => (
 
 )
 
-export default Slider01;
+export default Cardgame;

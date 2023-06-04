@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import Header from '../components/header/Header';
-import Footer from '../components/footer/Footer';
 import getPokemonData from '../assets/data/dataCardPokedex';
 import PokedexCollections from '../components/layouts/home/CardPokedex';
 
@@ -8,7 +7,7 @@ const Home = () => {
   const [pokemonData, setPokemonData] = useState([]);
   const [favorites, setFavorites] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
-  const [selectedType, setSelectedType] = useState('');
+  const [selectedTypes, setSelectedTypes] = useState([]);
 
   const handleSearch = (event) => {
     setSearchTerm(event.target.value);
@@ -16,7 +15,11 @@ const Home = () => {
 
   // Function for handling type selection
   const handleTypeSelect = (type) => {
-    setSelectedType(type);
+    if (selectedTypes.includes(type)) {
+      setSelectedTypes(selectedTypes.filter((t) => t !== type));
+    } else {
+      setSelectedTypes([...selectedTypes, type]);
+    }
   };
 
   const filterPokemons = (pokemonData) => {
@@ -24,15 +27,16 @@ const Home = () => {
       // Check if the pokemon name matches the search term
       const nameMatches = pokemon.name.toLowerCase().includes(searchTerm.toLowerCase());
 
-      // Check if the pokemon has the selected type
-      const hasSelectedType = selectedType ? pokemon.pokemonTypes.includes(selectedType) : true;
+      // Check if the pokemon has all of the selected types
+    const hasSelectedType = selectedTypes.length === 0 || selectedTypes.every((type) => pokemon.pokemonTypes.includes(type));
 
       // Return true only if both conditions are satisfied
       return nameMatches && hasSelectedType;
     });
   };
 
-  // Filter Pokémon based on selected type
+
+  // Filter Pokémon based on selected types
   const filteredPokemons = filterPokemons(pokemonData);
 
   // Get unique types from filteredPokemons
@@ -77,6 +81,9 @@ const Home = () => {
   return (
     <div className='home-1'>
       <Header />
+      <div className="offcanvas-container">
+
+      </div>
       <PokedexCollections
         data={filteredPokemons}
         handleToggleFavorite={handleToggleFavorite}
@@ -86,7 +93,6 @@ const Home = () => {
         type={uniqueTypes}
         handleTypeSelect={handleTypeSelect}
       />
-      <Footer />
     </div>
   );
 };

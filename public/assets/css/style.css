@@ -249,7 +249,7 @@ img {
     margin: 0;
     padding: 0;
   }
-  
+
   .pagination-item {
     display: inline-flex;
     justify-content: center;
@@ -263,7 +263,7 @@ img {
     margin: 0 5px;
     cursor: pointer;
   }
-  
+
   .pagination-item.active {
     background-color: #e758e7;
     color: #fff;
@@ -300,6 +300,9 @@ mark,
 ins {
     text-decoration: none;
 }
+.transparent-content {
+    background-color: #ffffff00 !important
+  }
 
 sup,
 sub {
@@ -322,6 +325,40 @@ address {
     font-style: italic;
     margin    : 0 0 20px;
 }
+
+.offcanvas-container {
+    position: relative;
+  }
+
+
+  .offcanvas-show {
+    visibility: visible;
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    background-color: lightblue;
+  }
+  .offcanvas-body{
+    position: absolute;
+    top: 30%;
+    right: 10%!important;
+    background-color: rgba(173, 216, 230, 0);
+  }
+  .offcanvas-header{
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    right: 0;
+    background-color: lightblue;
+  }
+  .Form.Check {
+    margin-bottom: 10px;
+  }
+
+  .Form.Check label {
+    color: rgb(225, 73, 233);
+  }
+
 
 code,
 kbd,

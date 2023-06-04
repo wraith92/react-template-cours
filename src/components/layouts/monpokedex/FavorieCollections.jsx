@@ -63,14 +63,18 @@ const CollectionsItem = (props) => {
     if (!props.item) {
       return null; // Ou un rendu alternatif pour gérer le cas où props.item est undefined
     }
-  
+
     return (
       <div className="slider-item col-md-4">
         <div className="sc-product-item style-4">
           <div className="product-img flex">
             <div className="img-left">
               <img src={props.item.img} alt="Bidzen" />
-              <label>{props.item.tags}</label>
+              <label>💪 strength: {props.item.strength}</label>
+
+              <span>
+  {Object.values(props.item.pokemonTypes).join(' ')}
+</span>
             </div>
           </div>
           <div className="product-content">
@@ -80,20 +84,19 @@ const CollectionsItem = (props) => {
             <div className="product-author flex mg-bt-0">
               <div className="left flex">
                 <div className="avatar">
-                  <img src={props.item.imgAuthor} alt="Bidzen" />
+
                 </div>
                 <div className="infor">
                   <div className="author-name">
                     <Link to="/authors">{props.item.name}</Link>
                   </div>
-                  <span>Creator</span>
                 </div>
               </div>
-              <div className="button-wishlish">
-                <button className="wishlish" onClick={() => props.handleToggleFavorite(props.item.name)}>
+              <div >
+                <button onClick={() => props.handleToggleFavorite(props.item.name)}>
                   <i className="fas fa-trash-alt"></i>
                 </button>
-                <span>{props.item.wishlist}</span>
+
               </div>
             </div>
           </div>
@@ -101,5 +104,5 @@ const CollectionsItem = (props) => {
       </div>
     );
   };
-  
+
 export default FavorieCollections;
