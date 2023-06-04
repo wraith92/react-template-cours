@@ -3,8 +3,7 @@ import { Link } from 'react-router-dom'
 import img1 from '../../assets/images/post/post-recent-new-4.jpg'
 import img2 from '../../assets/images/post/post-recent-new-5.jpg'
 
-import logo from '../../assets/images/logo/logo_dark.png'
-import logo2x from '../../assets/images/logo/logo_dark@2x.png'
+import logo from '../../assets/images/logo/logo.png'
 
 const Footer = () => {
     const [dataSocial] = useState([

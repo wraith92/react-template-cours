@@ -1,8 +1,7 @@
 import React , { useState , useEffect } from 'react';
 import { Link } from 'react-router-dom'
 
-import logo from '../../assets/images/logo/logo_dark.png'
-import logo2x from '../../assets/images/logo/logo_dark@2x.png'
+import logo from '../../assets/images/logo/logo.png'
 
 const FooterStyle2 = () => {
     const [dataSocial] = useState([
@@ -80,7 +79,7 @@ const FooterStyle2 = () => {
                                 <div className="logo-footer" id="logo-footer">
                                     <Link to="/">
                                         <img id="logo_footer" src={logo} alt="nft-gaming"
-                                            srcSet={logo2x} />
+                                            srcSet={logo} />
                                     </Link>
                                 </div>
                             </div>

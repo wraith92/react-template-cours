@@ -1,9 +1,6 @@
 import React , { useRef , useState , useEffect } from 'react';
 import { Link , useLocation } from 'react-router-dom'
-import logo from '../../assets/images/logo/logo_dark.png'
-import logo2x from '../../assets/images/logo/logo_dark@2x.png'
-import logolight from '../../assets/images/logo/logo.png'
-import logolight2x from '../../assets/images/logo/logo@2x.png'
+import logo from '../../assets/images/logo/logo.png'
 import menus from "../../pages/menu";
 import DarkMode from "./DarkMode"
 
@@ -50,8 +47,8 @@ const Header = () => {
                             <div id="site-logo" className="clearfix">
                                 <div id="site-logo-inner">
                                     <Link to="/" rel="home" className="main-logo">
-                                        <img id="logo_header" className='logo-dark' src={logo} srcSet={logo2x} alt="nft-gaming" />
-                                        <img id="logo_header" className='logo-light' src={logolight} srcSet={logolight2x} alt="nft-gaming" />
+                                        <img id="logo_header" className='logo-dark' src={logo} srcSet={logo} alt="nft-gaming" />
+                                        <img id="logo_header" className='logo-light' src={logo} srcSet={logo} alt="nft-gaming" />
                                     </Link>
                                 </div>
                             </div>

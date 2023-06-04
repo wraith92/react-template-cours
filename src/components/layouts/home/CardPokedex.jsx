@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart, faTimes, faPlus } from '@fortawesome/free-solid-svg-icons';
-import { Form, Offcanvas } from 'react-bootstrap';
-import { Modal, Button } from 'react-bootstrap';
+import { Modal, Button, Dropdown, DropdownButton } from 'react-bootstrap';
 
 const PokedexCollections = (props) => {
   const {
@@ -13,26 +12,20 @@ const PokedexCollections = (props) => {
     handleSearch,
     searchTerm,
     type,
-    handleTypeSelect,
   } = props;
 
-  // Pagination
-  const itemsPerPage = 6;
   const [activePage, setActivePage] = useState(1);
+  const itemsPerPage = 6;
   const totalPages = Math.ceil(data.length / itemsPerPage);
   const startIndex = (activePage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
   const paginatedData = data.slice(startIndex, endIndex);
   const [showOverlay, setShowOverlay] = useState(false);
   const [selectedPokemon, setSelectedPokemon] = useState(null);
-  const [showOffcanvas, setShowOffcanvas] = useState(false);
+  const [selectedTypes, setSelectedTypes] = useState([]);
 
   const toggleOverlay = () => {
     setShowOverlay(!showOverlay);
-  };
-
-  const toggleOffcanvas = () => {
-    setShowOffcanvas(!showOffcanvas);
   };
 
   const handlePageSelect = (page) => {
@@ -43,7 +36,27 @@ const PokedexCollections = (props) => {
     setSelectedPokemon(pokemon);
     toggleOverlay();
   };
-  console.log(selectedPokemon)
+
+  const handleTypeSelect = (selectedType) => {
+    if (selectedTypes.includes(selectedType)) {
+      setSelectedTypes(selectedTypes.filter((type) => type !== selectedType));
+    } else {
+      setSelectedTypes([...selectedTypes, selectedType]);
+    }
+  };
+
+  const filteredData = data.filter((item) => {
+    if (selectedTypes.length === 0) {
+      return true;
+    }
+    return selectedTypes.some((type) => item.pokemonTypes.includes(type));
+  });
+
+  const filteredPaginatedData = filteredData.slice(startIndex, endIndex);
+
+  const handleFilteredData = () => {
+    setActivePage(1);
+  };
 
   return (
     <section className="tf-trendy-collections tf-section">
@@ -57,27 +70,23 @@ const PokedexCollections = (props) => {
                 </div>
               </div>
               <div className="content-right">
-                <button className="btn-selector nolink" onClick={toggleOffcanvas}>
-                  <span>Type</span>
-                </button>
-                <Offcanvas show={showOffcanvas} onHide={toggleOffcanvas}  placement="top">
-                  <Offcanvas.Header closeButton>
-                    <Offcanvas.Title>Type</Offcanvas.Title>
-                  </Offcanvas.Header>
-                  <Offcanvas.Body>
-                    <Form>
-                      {type.map((type, index) => (
-                        <Form.Check
-                          key={index}
-                          type="checkbox"
-                          id={`type-checkbox-${index}`}
-                          label={type}
-                          onChange={() => handleTypeSelect(type)}
-                        />
-                      ))}
-                    </Form>
-                  </Offcanvas.Body>
-                </Offcanvas>
+                <DropdownButton
+                  id="typeDropdown"
+                  title="Type"
+                  variant="secondary"
+                  onSelect={(eventKey) => handleTypeSelect(eventKey)}
+                  className="dropdown-selector"
+                >
+                  {type.map((type, index) => (
+                    <Dropdown.Item
+                      key={index}
+                      eventKey={type}
+                      active={selectedTypes.includes(type)}
+                    >
+                      {type}
+                    </Dropdown.Item>
+                  ))}
+                </DropdownButton>
               </div>
             </div>
             <div className="row align-items-center">
@@ -101,7 +110,7 @@ const PokedexCollections = (props) => {
         </div>
 
         <div className="row trendy">
-          {paginatedData.map((item, index) => (
+          {filteredPaginatedData.map((item, index) => (
             <div key={index} className="col-lg-4 col-md-3 col-12">
               <div className="sc-product-item style-2">
                 <div className="product-img">
@@ -139,11 +148,10 @@ const PokedexCollections = (props) => {
                       <div className="author-name">
                         <Link to="/authors">{item.name}</Link>
                       </div>
-
                     </div>
                   </div>
                   <div className="product-price flex">
-                    <div className="title">💪 strength: {item.strength}</div>
+                    <div className="title"> Strength 💪: {item.strength}</div>
                     <div className="price">
                       <Button variant="secondary" onClick={() => handlePokemonDetails(item)}>
                         <FontAwesomeIcon icon={faPlus} className="heart-icon" /> Plus
@@ -156,8 +164,7 @@ const PokedexCollections = (props) => {
           ))}
         </div>
 
-        {/* Modal Overlay */}
-        <Modal show={showOverlay} onHide={toggleOverlay} centered >
+        <Modal show={showOverlay} onHide={toggleOverlay} centered>
           {selectedPokemon && (
             <>
               {/* ...other details... */}
@@ -179,13 +186,13 @@ const PokedexCollections = (props) => {
                         <Link to="#">{selectedPokemon.name}</Link>
                       </div>
                       <div>
-                        <span> baseExperience: {selectedPokemon.baseExperience} ⭐</span>
+                        <span> Experience: {selectedPokemon.baseExperience}</span>
                       </div>
                       <div>
-                        <span>weight: {selectedPokemon.weight} 🏋️</span>
+                        <span>Weight: {selectedPokemon.weight}</span>
                       </div>
                       <div>
-                        <span>height: {selectedPokemon.height} 📏</span>
+                        <span>Height: {selectedPokemon.height}</span>
                       </div>
                     </div>
                   </div>
@@ -203,7 +210,6 @@ const PokedexCollections = (props) => {
           </Modal.Footer>
         </Modal>
 
-        {/* Pagination */}
         <div className="row justify-content-center mt-4">
           <ul className="pagination">
             {Array.from({ length: totalPages }, (_, index) => (
